@@ -28,6 +28,7 @@ export default function AppMentor() {
           </li>
         ))}
       </ul>
+      {/* 멘토 이름 변경 */}
       <button
         onClick={() => {
           const prev = prompt(`누구의 이름을 바꾸고 싶은가요?`);
@@ -44,7 +45,51 @@ export default function AppMentor() {
           }));
         }}
       >
-        멘토의 이름을 바꾸기
+        멘토 이름 바꾸기
+      </button>
+      {/* 멘토 추가하기 */}
+      <button
+        onClick={() => {
+          const mentorName = prompt(`멘토의 이름이 무엇인가요?`);
+          const mentorTitle = prompt(`멘토의 레벨은 무엇인가요?`);
+
+          setPerson((person) => ({
+            ...person,
+            mentors: [
+              ...person.mentors,
+              { name: mentorName, title: mentorTitle },
+            ],
+          }));
+        }}
+      >
+        멘토 추가하기
+      </button>
+      {/* 멘토 삭제하기 */}
+      <button
+        onClick={() => {
+          const deleteName = prompt(
+            `삭제하려고 하는 멘토의 이름은 무엇인가요?`
+          );
+          console.log(deleteName, person.mentors);
+          setPerson((person) => ({
+            ...person,
+            mentor: person.mentors.filter(
+              (mentor) => mentor.name != deleteName
+            ),
+          }));
+
+          //   setPerson((person) => ({
+          //     ...person,
+          //     mentors: person.mentors.map((mentor) => {
+          //       if (mentor.name == prev) {
+          //         return { ...mentor, name: current };
+          //       }
+          //       return mentor;
+          //     }),
+          //   }));
+        }}
+      >
+        멘토 삭제하기
       </button>
     </div>
   );
