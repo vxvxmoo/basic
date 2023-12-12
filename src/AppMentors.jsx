@@ -73,20 +73,11 @@ export default function AppMentor() {
           console.log(deleteName, person.mentors);
           setPerson((person) => ({
             ...person,
-            mentor: person.mentors.filter(
-              (mentor) => mentor.name != deleteName
+            // mentors를 mentor로 오타냄.......... ....... ........................................
+            mentors: person.mentors.filter(
+              (mentor) => mentor.name !== deleteName
             ),
           }));
-
-          //   setPerson((person) => ({
-          //     ...person,
-          //     mentors: person.mentors.map((mentor) => {
-          //       if (mentor.name == prev) {
-          //         return { ...mentor, name: current };
-          //       }
-          //       return mentor;
-          //     }),
-          //   }));
         }}
       >
         멘토 삭제하기
