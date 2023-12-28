@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./AppTheme.css";
+import { DarkModeContext, DarkModeProvider } from "./context/DarkModeContext";
 
 export default function AppTheme() {
   return (
-    <>
+    <DarkModeProvider>
       <Header />
       <Main />
       <Footer />
-    </>
+    </DarkModeProvider>
   );
 }
 
@@ -48,11 +49,21 @@ function Products() {
 }
 
 function ProductDetail() {
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   return (
     <div>
       Product Detail
-      <p>DarkMode: </p>
-      <button>Toggle</button>
+      <p>
+        DarkMode:
+        {darkMode ? (
+          <span style={{ backgroundColor: "black", color: "white" }}>
+            Dark Mode
+          </span>
+        ) : (
+          <span>Light Mode</span>
+        )}
+      </p>
+      <button onClick={() => toggleDarkMode()}>Toggle</button>
     </div>
   );
 }
